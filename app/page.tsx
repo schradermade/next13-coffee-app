@@ -1,95 +1,150 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import Head from "next/head";
+import Image from "next/image";
+
+import Banner from "../components/Banner";
 
 export default function Home() {
+  const handleOnBannerBtnClick = () => {
+    console.log("button banner clicked");
+  };
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <div className="container">
+      <Head>
+        <title>Coffee Connoisseur</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="main">
+        <Banner
+          btnLabel="Vew stores nearby!"
+          handleOnClick={handleOnBannerBtnClick}
         />
-      </div>
+        <div className="heroImage">
+          <Image
+            alt="hero"
+            src="/static/hero-image.png"
+            width={700}
+            height={400}
+          />
+        </div>
+      </main>
+      <style jsx>{`
+        /** Mobile first development **/
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        .container {
+          margin-bottom: 14rem /* 224px */;
+        }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+        .main {
+          margin-top: 2.5rem /* 40px */;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 72rem /* 1152px */;
+          padding-left: 1rem /* 16px */;
+          padding-right: 1rem /* 16px */;
+        }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+        .heroImage {
+          position: absolute;
+          top: 0px;
+          z-index: 1;
+        }
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        .cardLayout {
+          display: grid;
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+          column-gap: 1.5rem /* 24px */;
+          row-gap: 1.5rem /* 24px */;
+        }
+
+        .card {
+          justify-content: center;
+        }
+
+        .heading2 {
+          font-size: 2.25rem;
+          line-height: 2.5rem;
+          padding-bottom: 2rem;
+          margin-top: 2rem;
+          color: var(--text-white-100);
+        }
+
+        .sectionWrapper {
+          margin-top: 5rem;
+        }
+
+        /** Breakpoints:
+          sm: min-width: 640px;
+          md: min-width: 768px;
+          lg: min-width: 1024px;
+          xl: min-width: 1280px;
+          2xl: min-width: 1536px;
+        **/
+
+        @media (min-width: 640px) {
+          .container {
+            padding-left: 1rem /* 16px */;
+            padding-right: 1rem /* 16px */;
+          }
+
+          .main {
+            margin-top: 3rem /* 48px */;
+            padding-left: 1.5rem /* 24px */;
+            padding-right: 1.5rem /* 24px */;
+          }
+          .cardLayout {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (min-width: 768px) {
+          .container {
+            padding-left: 2.5rem /* 40px */;
+            padding-right: 2.5rem /* 40px */;
+          }
+
+          .main {
+            margin-top: 4rem /* 64px */;
+          }
+
+          .heroImage {
+            right: 20%;
+          }
+
+          .cardLayout {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .container {
+            padding-left: 2.5rem /* 40px */;
+            padding-right: 2.5rem /* 40px */;
+          }
+          .main {
+            margin-top: 5rem /* 80px */;
+            padding-left: 2rem /* 32px */;
+            padding-right: 2rem /* 32px */;
+          }
+          .heroImage {
+            right: 20%;
+          }
+          .cardLayout {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+
+        @media (min-width: 1280px) {
+          .main {
+            margin-top: 7rem /* 112px */;
+          }
+
+          .cardLayout {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+        }
+      `}</style>
+    </div>
+  );
 }
