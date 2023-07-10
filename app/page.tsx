@@ -2,37 +2,16 @@
 
 import Head from "next/head";
 import Image from "next/image";
-
 import Banner from "../components/Banner";
 import Card from "@/components/Card";
-import coffeeStores from "../data/coffee-stores.json";
-import { useEffect, useMemo, useState } from "react";
-
-type Stores = {
-  id: number;
-  name: string;
-  imgUrl: string;
-  websiteUrl: string;
-  address: string;
-  neighbourhood: string;
-};
+import getAllStores from "@/api/getAllStores";
+import { StoreProps } from "@/lib/getStore";
 
 export default async function Home() {
-  const [stores, setStores] = useState<Stores[]>([]);
-  // function getData() {
-  //   const storeList = [...coffeeStores];
-  //   console.log("LIST:", storeList);
-  //   return storeList;
-  // }
+  // const [stores, setStores] = useState<[]>([]);
 
-  // console.log("STORELIST:", storeList);
-  // useEffect(() => {
-  //   const data = getData();
-  //   if (data) {
-  //     setStores(...data);
-  //     console.log("THEST:", stores);
-  //   }
-  // }, [stores]);
+  const stores = await getAllStores();
+  console.log("STORES:", await stores);
 
   const handleOnBannerBtnClick = () => {
     console.log("button banner clicked");
@@ -46,7 +25,7 @@ export default async function Home() {
       </Head>
       <main className="main">
         <Banner
-          btnLabel="Vew stores nearby!"
+          btnLabel="View stores nearby!"
           handleOnClick={handleOnBannerBtnClick}
         />
         <div className="heroImage">
@@ -55,14 +34,22 @@ export default async function Home() {
             src="/static/hero-image.png"
             width={700}
             height={400}
+            priority
           />
         </div>
-        {/* {coffeeStores.length > 0 && (
+        {stores.length > 0 && (
           <>
             <h2 className="heading2">Portland Coffee Stores</h2>
             <div className="cardLayout">
-              {coffeeStores.map(
-                ({ id, name, imgUrl, websiteUrl, address, neighbourhood }) => {
+              {stores.map(
+                ({
+                  id,
+                  name,
+                  imgUrl,
+                  websiteUrl,
+                  address,
+                  neighbourhood,
+                }: StoreProps) => {
                   return (
                     <Card
                       key={id}
@@ -77,7 +64,7 @@ export default async function Home() {
               )}
             </div>
           </>
-        )} */}
+        )}
       </main>
       <style jsx>{`
         /** Mobile first development **/
