@@ -3,18 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import cls from "classnames";
-import styles from "./Card.module.css";
-import useSWR from "swr";
+import styles from "./StoreCard.module.css";
+import { Store } from "@/lib/getStore";
 
-type CardProps = {
-  name: string;
-  imgUrl: string;
-  href: string;
-  altDescr: string;
+type Props = {
+  store: Store;
+  // href: string;
 };
 // const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const Card: React.FC<CardProps> = ({ name, imgUrl, href, altDescr }) => {
+const StoreCard: React.FC<Props> = ({ store }) => {
+  const { name, imgUrl, id } = store;
   // const { data, error, isLoading } = useSWR(
   //   "https://jsonplaceholder.typicode.com/todo",
   //   fetcher
@@ -27,7 +26,7 @@ const Card: React.FC<CardProps> = ({ name, imgUrl, href, altDescr }) => {
 
   return (
     <>
-      <Link href={href} passHref>
+      <Link href={`/coffee-store/${store.id}`} passHref>
         <div className={cls("glass", styles.container)}>
           <div className={styles.cardHeaderWrapper}>
             <h2 className={styles.cardHeader}>{name}</h2>
@@ -38,7 +37,7 @@ const Card: React.FC<CardProps> = ({ name, imgUrl, href, altDescr }) => {
               width={260}
               src={imgUrl}
               height={160}
-              alt={altDescr}
+              alt={"hello"}
             />
           </div>
         </div>
@@ -47,4 +46,4 @@ const Card: React.FC<CardProps> = ({ name, imgUrl, href, altDescr }) => {
   );
 };
 
-export default Card;
+export default StoreCard;
