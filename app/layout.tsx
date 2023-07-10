@@ -1,3 +1,4 @@
+// import ErrorBoundary from "@/lib/ErrorBoundary";
 import "./globals.css";
 import { Inter, IBM_Plex_Sans } from "next/font/google";
 
@@ -14,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    // <ErrorBoundary>
     <html lang="en">
       <body className={ibm.className}>{children}</body>
     </html>
+    // </ErrorBoundary>
   );
 }

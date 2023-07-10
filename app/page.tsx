@@ -4,11 +4,40 @@ import Head from "next/head";
 import Image from "next/image";
 
 import Banner from "../components/Banner";
+import Card from "@/components/Card";
+import coffeeStores from "../data/coffee-stores.json";
+import { useEffect, useMemo, useState } from "react";
 
-export default function Home() {
+type Stores = {
+  id: number;
+  name: string;
+  imgUrl: string;
+  websiteUrl: string;
+  address: string;
+  neighbourhood: string;
+};
+
+export default async function Home() {
+  const [stores, setStores] = useState<Stores[]>([]);
+  // function getData() {
+  //   const storeList = [...coffeeStores];
+  //   console.log("LIST:", storeList);
+  //   return storeList;
+  // }
+
+  // console.log("STORELIST:", storeList);
+  // useEffect(() => {
+  //   const data = getData();
+  //   if (data) {
+  //     setStores(...data);
+  //     console.log("THEST:", stores);
+  //   }
+  // }, [stores]);
+
   const handleOnBannerBtnClick = () => {
     console.log("button banner clicked");
   };
+
   return (
     <div className="container">
       <Head>
@@ -28,6 +57,27 @@ export default function Home() {
             height={400}
           />
         </div>
+        {/* {coffeeStores.length > 0 && (
+          <>
+            <h2 className="heading2">Portland Coffee Stores</h2>
+            <div className="cardLayout">
+              {coffeeStores.map(
+                ({ id, name, imgUrl, websiteUrl, address, neighbourhood }) => {
+                  return (
+                    <Card
+                      key={id}
+                      name={name}
+                      imgUrl={`${imgUrl}`}
+                      href={`/coffee-store/${id}`}
+                      altDescr={name}
+                      // className={card}
+                    />
+                  );
+                }
+              )}
+            </div>
+          </>
+        )} */}
       </main>
       <style jsx>{`
         /** Mobile first development **/
