@@ -1,13 +1,4 @@
-export type Store = {
-  id: string;
-  name: string;
-  imageUrl: string;
-  createdAt: string;
-  votes: number;
-  streetAddress: string;
-  city: string;
-  state: string;
-};
+import { Store } from "@/types";
 
 export async function fetchStore(id: string): Promise<Store> {
   const options = {
@@ -26,6 +17,5 @@ export async function fetchStore(id: string): Promise<Store> {
   }
 
   const data = await res.json();
-  console.log("DATA!:", data);
   return data;
 }

@@ -1,9 +1,9 @@
 import Banner from "../features/Banner/Banner";
 import StoreCard from "@/features/Store/StoreCard";
 import fetchAllStores from "@/api/fetchAllStores";
-import { Store } from "@/api/fetchStore";
 import styles from "./page.module.css";
 import { Metadata } from "next";
+import { Store } from "@/types";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -16,7 +16,6 @@ export default async function Home() {
   // const [stores, setStores] = useState<[]>([]);
 
   const stores = await fetchAllStores();
-
   // const handleOnBannerBtnClick = () => {
   //   // console.log("button banner clicked");
   // };
@@ -27,11 +26,12 @@ export default async function Home() {
         <Banner />
         {stores.length > 0 && (
           <>
-            <h2 className={styles.heading2}>Portland Coffee Stores</h2>
-            <div className={styles.cardLayout}>
-              {stores.map((store: Store) => {
-                return <StoreCard key={store.id} store={store} />;
-              })}
+            <div className={styles.sectionWrapper}>
+              <div className={styles.cardLayout}>
+                {stores.map((store: Store) => {
+                  return <StoreCard key={store.fsq_id} store={store} />;
+                })}
+              </div>
             </div>
           </>
         )}

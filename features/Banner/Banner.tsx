@@ -1,12 +1,21 @@
+"use client";
+
 import Button from "@/components/Button/Button";
 import styles from "./Banner.module.css";
-import Image from "next/image";
+import useLocation from "@/hooks/useLocation";
+import { useState } from "react";
+import TextInput from "@/components/TextInput/TextInput";
 
 type BannerProps = {};
 
 const Banner: React.FC<BannerProps> = ({}) => {
+  const [searchInput, setSearchInput] = useState("");
+  const { handleTrackLocation, latLong, locationErrorMsg, isFindingLocation } =
+    useLocation();
+
   async function handleButtonClick() {
-    "use server";
+    // "use server";
+    handleTrackLocation();
   }
   return (
     <>
@@ -16,24 +25,18 @@ const Banner: React.FC<BannerProps> = ({}) => {
           <span className={styles.title2}>Connoisseur</span>
         </h1>
         <p className={styles.subtitle}>Discover your local coffee shops!</p>
+        <TextInput input={searchInput} onChange={(e) => setSearchInput(e)} />
         <div className={styles.buttonWrapper}>
           <Button btnStyles={styles.button} onClick={handleButtonClick}>
-            View stores nearby!
+            {isFindingLocation ? "Locating..." : "View stores nearby!"}
           </Button>
         </div>
       </div>
-      <div className={styles.heroImage}>
-        <Image
-          alt="hero"
-          src={
-            "/static/hero-image.png" ||
-            "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
-          }
-          width={700}
-          height={400}
-          priority
-        />
-      </div>
+      <p>{locationErrorMsg && `Something went wrong: ${locationErrorMsg}`}</p>
+      <h2 className={styles.heading2}>
+        Places in the area for{" "}
+        <p className={styles.inputPhrase}>{searchInput}</p>.
+      </h2>
     </>
   );
 };

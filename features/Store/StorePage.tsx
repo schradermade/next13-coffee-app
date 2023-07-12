@@ -3,7 +3,7 @@ import cls from "classnames";
 import Button from "@/components/Button/Button";
 import styles from "./StorePage.module.css";
 import Link from "next/link";
-import { Store } from "@/api/fetchStore";
+import { Store } from "@/types";
 
 type Props = {
   store: Store;
@@ -11,8 +11,7 @@ type Props = {
 };
 
 const StorePage: React.FC<Props> = ({ store }) => {
-  const { id, name, imageUrl, votes, createdAt, streetAddress, city, state } =
-    store;
+  const { name } = store;
 
   console.log("STORE!!:", store);
 
@@ -35,8 +34,7 @@ const StorePage: React.FC<Props> = ({ store }) => {
           </div>
           <Image
             src={
-              "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" ||
-              imageUrl
+              "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
             }
             width={600}
             height={360}
