@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_DB_URL: process.env.NEXT_PUBLIC_DB_URL,
+  },
   experimental: {
     serverActions: true,
   },
@@ -8,6 +11,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "loremflickr.com",
       },
     ],
   },

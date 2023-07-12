@@ -2,14 +2,15 @@
 import styles from "./Button.module.css";
 
 type Props = {
-  label: string;
-  clickHandler: () => void;
+  btnStyles: any;
+  onClick: () => void;
+  children: any;
 };
 
-const Button: React.FC<Props> = ({ label, clickHandler }) => {
+const Button: React.FC<Props> = ({ children, btnStyles, onClick }) => {
   return (
-    <button className={styles.upvoteButton} onClick={() => clickHandler()}>
-      {label}
+    <button className={btnStyles} onClick={() => onClick()}>
+      {children}
     </button>
   );
 };

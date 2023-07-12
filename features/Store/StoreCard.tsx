@@ -4,25 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import cls from "classnames";
 import styles from "./StoreCard.module.css";
-import { Store } from "@/lib/getStore";
+import { Store } from "@/api/fetchStore";
 
 type Props = {
   store: Store;
-  // href: string;
 };
-// const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const StoreCard: React.FC<Props> = ({ store }) => {
-  const { name, imgUrl, id } = store;
-  // const { data, error, isLoading } = useSWR(
-  //   "https://jsonplaceholder.typicode.com/todo",
-  //   fetcher
-  // );
-  // if (error) {
-  //   return <div>An error has occurred</div>;
-  // }
-  // if (isLoading) return <div>Loading!...</div>;
-  // console.log("DATA:", data);
+  const { name, imageUrl, id } = store;
 
   return (
     <>
@@ -35,7 +24,10 @@ const StoreCard: React.FC<Props> = ({ store }) => {
             <Image
               className={styles.cardImage}
               width={260}
-              src={imgUrl}
+              src={
+                "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" ||
+                imageUrl
+              }
               height={160}
               alt={"hello"}
             />

@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import getAllStores from "@/api/getAllStores";
+import fetchAllStores from "@/api/fetchAllStores";
 
 export default async function StoresPage() {
-  const storeData: Promise<any> = getAllStores();
-  console.log("STDATA:", storeData);
+  const storeData: Promise<any> = fetchAllStores();
+  console.log("ENVVARS!:", process.env.DB_URL);
   // const storesData: Promise<User[]> = getAllStores();
   // const [stores, setStores] = useState([]);
 
@@ -41,14 +40,3 @@ export default async function StoresPage() {
     </div>
   );
 }
-
-// const CoffeeStore = () => {
-//   return (
-//     <>
-//       <div>Coffee store page</div>
-//       <Link href="/">Back to home</Link>
-//     </>
-//   );
-// };
-
-// export default CoffeeStore;

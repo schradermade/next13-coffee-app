@@ -1,11 +1,9 @@
-// "use client";
-
 import Image from "next/image";
 import cls from "classnames";
 import Button from "@/components/Button/Button";
 import styles from "./StorePage.module.css";
 import Link from "next/link";
-import { Store } from "@/lib/getStore";
+import { Store } from "@/api/fetchStore";
 
 type Props = {
   store: Store;
@@ -13,7 +11,10 @@ type Props = {
 };
 
 const StorePage: React.FC<Props> = ({ store }) => {
-  const { id, name, imgUrl, websiteUrl, address, neighbourhood } = store;
+  const { id, name, imageUrl, votes, createdAt, streetAddress, city, state } =
+    store;
+
+  console.log("STORE!!:", store);
 
   async function handleUpvoteButton() {
     "use server";
@@ -33,7 +34,10 @@ const StorePage: React.FC<Props> = ({ store }) => {
             <h1 className={styles.name}>{name}</h1>
           </div>
           <Image
-            src={imgUrl}
+            src={
+              "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" ||
+              imageUrl
+            }
             width={600}
             height={360}
             className={styles.storeImg}
@@ -49,9 +53,11 @@ const StorePage: React.FC<Props> = ({ store }) => {
               height="24"
               alt={name}
             />
-            <p className={styles.text}>{address}</p>
+            <p className={styles.text}>
+              {city},&nbsp;{state}
+            </p>
           </div>
-          <div className={styles.iconWrapper}>
+          {/* <div className={styles.iconWrapper}>
             <Image
               src="/static/icons/near-me.svg"
               width="24"
@@ -59,17 +65,22 @@ const StorePage: React.FC<Props> = ({ store }) => {
               alt={name}
             />
             <p className={styles.text}>{neighbourhood}</p>
-          </div>
+          </div> */}
           <div className={styles.iconWrapper}>
             <Image
-              src="/static/icons/star.svg"
+              src={
+                "/static/icons/star.svg" ||
+                "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+              }
               width="24"
               height="24"
               alt={name}
             />
-            <p className={styles.text}>1</p>
+            <p className={styles.text}>{votes}</p>
           </div>
-          <Button label="Up vote!" clickHandler={handleUpvoteButton} />
+          <Button onClick={handleUpvoteButton} btnStyles={styles.upvoteButton}>
+            Up vote!
+          </Button>
         </div>
       </div>
     </div>

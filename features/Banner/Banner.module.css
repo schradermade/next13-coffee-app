@@ -23,6 +23,13 @@
     color: var(--text-purple);
   }
 
+  .heroImage {
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+  }
+
+
   .subTitle {
     margin-top: 0.75rem;
     font-size: 1.5rem /* 24px */;
@@ -84,6 +91,10 @@ xl: min-width: 1280px; // extra large device
 
   /** md breakpoint **/
   @media (min-width: 768px) {
+
+    .heroImage {
+      right: 20%;
+    }
     .title {
       font-size: 3.75rem /* 60px */;
       line-height: 1;
@@ -107,6 +118,10 @@ xl: min-width: 1280px; // extra large device
   @media (min-width: 1024px) {
     .container {
       text-align: left;
+    }
+
+    .heroImage {
+      right: 20%;
     }
 
     .title {

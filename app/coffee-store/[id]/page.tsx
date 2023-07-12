@@ -1,36 +1,33 @@
-import { getStore } from "@/lib/getStore";
-import { Store } from "@/lib/getStore";
+import { fetchStore } from "@/api/fetchStore";
+import { Store } from "@/api/fetchStore";
 import { Metadata } from "next";
 import StorePage from "@/features/Store/StorePage";
 
-import { revalidateTag } from "next/cache";
-
 type Props = {
-  params: { id: string };
-  error: Error;
+  params: any;
+  error: any;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let data;
-  try {
-    data = await getStore(params.id);
-  } catch (error) {}
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const storeId = params.id;
+  const data = await fetchStore(storeId);
   return {
     title: data?.name,
     // description: "hello",
   };
 }
 
-const CoffeeStore: React.FC<Props> = async ({ params, error }) => {
+const CoffeeStore = async ({ params, error }: any) => {
   if (error) {
     throw new Error("Problem with the dynamic route!");
   }
   const storeId: string = params.id;
-  const store: Store = await getStore(storeId);
+  console.log("ID:", storeId);
+  const data: Store = await fetchStore(storeId);
 
   return (
     <>
-      <StorePage store={store} />
+      <StorePage store={data} />
     </>
   );
 };

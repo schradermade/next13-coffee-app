@@ -1,41 +1,30 @@
-import Head from "next/head";
-import Image from "next/image";
 import Banner from "../features/Banner/Banner";
 import StoreCard from "@/features/Store/StoreCard";
-import getAllStores from "@/api/getAllStores";
-import { Store } from "@/lib/getStore";
+import fetchAllStores from "@/api/fetchAllStores";
+import { Store } from "@/api/fetchStore";
 import styles from "./page.module.css";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Coffee Connoisseur",
+    // description: "hello",
+  };
+}
 
 export default async function Home() {
   // const [stores, setStores] = useState<[]>([]);
 
-  const stores = await getAllStores();
-  console.log("STORES:", await stores);
+  const stores = await fetchAllStores();
 
-  const handleOnBannerBtnClick = () => {
-    console.log("button banner clicked");
-  };
+  // const handleOnBannerBtnClick = () => {
+  //   // console.log("button banner clicked");
+  // };
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Coffee Connoisseur</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main className={styles.main}>
-        <Banner
-          btnLabel="View stores nearby!"
-          handleOnClick={handleOnBannerBtnClick}
-        />
-        <div className={styles.heroImage}>
-          <Image
-            alt="hero"
-            src="/static/hero-image.png"
-            width={700}
-            height={400}
-            priority
-          />
-        </div>
+        <Banner />
         {stores.length > 0 && (
           <>
             <h2 className={styles.heading2}>Portland Coffee Stores</h2>
