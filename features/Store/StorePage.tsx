@@ -14,10 +14,8 @@ const StorePage: React.FC<Props> = ({ store }) => {
   const {
     name,
     timezone,
-    location: { address, locality, region, postcode, formatted_address },
+    location: { formatted_address },
   } = store;
-
-  console.log("STORE!!:", store);
 
   async function handleUpvoteButton() {
     "use server";
@@ -55,35 +53,9 @@ const StorePage: React.FC<Props> = ({ store }) => {
               height="24"
               alt={"hello"}
             />
-            {/* <p className={styles.text}>
-              {address}&#46;,&nbsp;
-              {locality},&nbsp;{region}&nbsp;
-              {postcode}
-            </p> */}
             <p className={styles.text}>&nbsp;{formatted_address}</p>
           </div>
-
-          {/* <div className={styles.iconWrapper}>
-            <Image
-              src="/static/icons/near-me.svg"
-              width="24"
-              height="24"
-              alt={name}
-            />
-            <p className={styles.text}>{neighbourhood}</p>
-          </div> */}
-          <div className={styles.iconWrapper}>
-            {/* <Image
-              src={
-                "/static/icons/star.svg" ||
-                "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
-              }
-              width="24"
-              height="24"
-              alt={"hello"}
-            /> */}
-            {/* <p className={styles.text}>{votes}</p> */}
-          </div>
+          <div className={styles.iconWrapper}></div>
           <div className={styles.iconWrapper}>
             <Image
               src={"/static/icons/clock.svg"}
