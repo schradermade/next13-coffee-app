@@ -1,7 +1,7 @@
 import { fetchStore } from "@/api/fetchStore";
-import { Store } from "@/api/fetchStore";
 import { Metadata } from "next";
 import StorePage from "@/features/Store/StorePage";
+import { Store } from "@/types";
 
 type Props = {
   params: any;
@@ -10,9 +10,9 @@ type Props = {
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const storeId = params.id;
-  const data = await fetchStore(storeId);
+  // const data = await fetchStore(storeId);
   return {
-    title: data?.name,
+    // title: data?.name,
     // description: "hello",
   };
 }
@@ -27,6 +27,7 @@ const CoffeeStore = async ({ params, error }: any) => {
 
   return (
     <>
+      {" "}
       <StorePage store={data} />
     </>
   );

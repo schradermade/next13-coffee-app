@@ -13,8 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  // const [stores, setStores] = useState<[]>([]);
-
   const stores = await fetchAllStores();
   // const handleOnBannerBtnClick = () => {
   //   // console.log("button banner clicked");

@@ -1,30 +1,28 @@
-export default async function fetchAllStores() {
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     Accept: "application/json",
-  //   },
-  //   next: {
-  //     tags: ["stores"],
-  //   },
-  // };
+const getUrlForCoffeeStores = (
+  latLong: string,
+  query: string,
+  limit: number
+) => {
+  return `https://api.foursquare.com/v3/places/search?query=${query}&ll=${latLong}&limit=${limit}`;
+};
 
+export default async function fetchAllStores() {
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      authorization: process.env.PLACES_KEY!,
+      authorization: process.env.FOURSQUARE_API_KEY!,
     },
   };
 
   const res = await fetch(
-    `https://api.foursquare.com/v3/places/search?query=breakfast&ll=45.528974%2C-122.681000&limit=13`,
+    getUrlForCoffeeStores("45.62970,-122.66680", "barber", 2),
     options
   );
 
-  // const res = await fetch(process.env.DB_URL!, options);
   if (!res.ok) {
-    throw new Error("Soemthing went wrong getting the data!");
+    console.log("RES-ERROR:", res.status, res);
+    throw new Error("FETCHALLSTORES: Soemthing went wrong getting the data!");
   }
   const data = await res.json();
   console.log("DATAAA:", data.results);

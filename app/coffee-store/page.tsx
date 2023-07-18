@@ -2,7 +2,7 @@ import Link from "next/link";
 import fetchAllStores from "@/api/fetchAllStores";
 
 export default async function StoresPage() {
-  const storeData: Promise<any> = fetchAllStores();
+  // const storeData: Promise<any> = fetchAllStores();
 
   return (
     <div>

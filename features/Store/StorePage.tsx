@@ -11,7 +11,11 @@ type Props = {
 };
 
 const StorePage: React.FC<Props> = ({ store }) => {
-  const { name } = store;
+  const {
+    name,
+    timezone,
+    location: { address, locality, region, postcode, formatted_address },
+  } = store;
 
   console.log("STORE!!:", store);
 
@@ -39,7 +43,7 @@ const StorePage: React.FC<Props> = ({ store }) => {
             width={600}
             height={360}
             className={styles.storeImg}
-            alt={name}
+            alt={"hello"}
           />
         </div>
         <div className={cls("glass", styles.col2)}>
@@ -49,12 +53,16 @@ const StorePage: React.FC<Props> = ({ store }) => {
               src="/static/icons/location.svg"
               width="24"
               height="24"
-              alt={name}
+              alt={"hello"}
             />
-            <p className={styles.text}>
-              {city},&nbsp;{state}
-            </p>
+            {/* <p className={styles.text}>
+              {address}&#46;,&nbsp;
+              {locality},&nbsp;{region}&nbsp;
+              {postcode}
+            </p> */}
+            <p className={styles.text}>&nbsp;{formatted_address}</p>
           </div>
+
           {/* <div className={styles.iconWrapper}>
             <Image
               src="/static/icons/near-me.svg"
@@ -65,16 +73,25 @@ const StorePage: React.FC<Props> = ({ store }) => {
             <p className={styles.text}>{neighbourhood}</p>
           </div> */}
           <div className={styles.iconWrapper}>
-            <Image
+            {/* <Image
               src={
                 "/static/icons/star.svg" ||
                 "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
               }
               width="24"
               height="24"
-              alt={name}
+              alt={"hello"}
+            /> */}
+            {/* <p className={styles.text}>{votes}</p> */}
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src={"/static/icons/clock.svg"}
+              width="24"
+              height="24"
+              alt={"hello"}
             />
-            <p className={styles.text}>{votes}</p>
+            <p className={styles.text}>Timezone: {timezone}</p>
           </div>
           <Button onClick={handleUpvoteButton} btnStyles={styles.upvoteButton}>
             Up vote!
