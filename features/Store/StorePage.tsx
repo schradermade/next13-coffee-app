@@ -11,12 +11,8 @@ type Props = {
 };
 
 const StorePage: React.FC<Props> = ({ store }) => {
-  const {
-    name,
-    timezone,
-    location: { formatted_address },
-  } = store;
-
+  const { name, timezone, address, imgUrl } = store;
+  console.log("PIC!:", imgUrl);
   async function handleUpvoteButton() {
     "use server";
     console.log("HANDLE UPVOTE!!!");
@@ -35,9 +31,7 @@ const StorePage: React.FC<Props> = ({ store }) => {
             <h1 className={styles.name}>{name}</h1>
           </div>
           <Image
-            src={
-              "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
-            }
+            src={imgUrl}
             width={600}
             height={360}
             className={styles.storeImg}
@@ -53,7 +47,7 @@ const StorePage: React.FC<Props> = ({ store }) => {
               height="24"
               alt={"hello"}
             />
-            <p className={styles.text}>&nbsp;{formatted_address}</p>
+            <p className={styles.text}>&nbsp;{address}</p>
           </div>
           <div className={styles.iconWrapper}></div>
           <div className={styles.iconWrapper}>

@@ -34,7 +34,7 @@ type User = {
 // };
 
 export type Store = {
-  fsq_id: string;
+  id: string;
   categories: [
     {
       id: number;
@@ -80,4 +80,6 @@ export type Store = {
   name: string;
   related_places: {};
   timezone: string;
+  imgUrl: any;
+  address: string;
 };

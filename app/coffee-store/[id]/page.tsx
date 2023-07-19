@@ -24,7 +24,7 @@ const CoffeeStore = async ({ params, error }: any) => {
   const storeId: string = params.id;
   console.log("ID:", storeId);
   const data: Store = await fetchStore(storeId);
-
+  console.log("STOERE!:", data);
   return (
     <>
       {" "}

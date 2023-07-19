@@ -27,7 +27,7 @@ export default async function Home() {
             <div className={styles.sectionWrapper}>
               <div className={styles.cardLayout}>
                 {stores.map((store: Store) => {
-                  return <StoreCard key={store.fsq_id} store={store} />;
+                  return <StoreCard key={store.id} store={store} />;
                 })}
               </div>
             </div>
