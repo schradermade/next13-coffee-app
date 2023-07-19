@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import cls from "classnames";
@@ -12,7 +10,6 @@ type Props = {
 
 const StoreCard: React.FC<Props> = ({ store }) => {
   const { name, id, imgUrl } = store;
-  console.log("NAME:", name);
 
   return (
     <>
@@ -22,13 +19,15 @@ const StoreCard: React.FC<Props> = ({ store }) => {
             <h2 className={styles.cardHeader}>{name}</h2>
           </div>
           <div className={styles.cardImageWrapper}>
-            <Image
-              className={styles.cardImage}
-              width={260}
-              src={imgUrl}
-              height={160}
-              alt={name}
-            />
+            {imgUrl && (
+              <Image
+                className={styles.cardImage}
+                width={260}
+                src={imgUrl && imgUrl}
+                height={160}
+                alt={name}
+              />
+            )}
           </div>
         </div>
       </Link>

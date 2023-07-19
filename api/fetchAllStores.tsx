@@ -16,14 +16,14 @@ const getListOfCoffeeStorePhotos = async () => {
   const photos = await unsplash.search.getPhotos({
     query: "barber shop",
     page: 1,
-    perPage: 10,
+    perPage: 2,
   });
   const unsplashResults = photos.response?.results;
 
   return unsplashResults?.map((result) => result.urls["small"]);
 };
 
-export default async function fetchAllStores() {
+export default async function FetchAllStores() {
   const photos = await getListOfCoffeeStorePhotos();
   const options: RequestInit = {
     method: "GET",

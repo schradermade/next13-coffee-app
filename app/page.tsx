@@ -25,6 +25,7 @@ export default async function Home() {
         {stores.length > 0 && (
           <>
             <div className={styles.sectionWrapper}>
+              {/* <p>Finding locations based on: {latLong}</p> */}
               <div className={styles.cardLayout}>
                 {stores.map((store: Store) => {
                   return <StoreCard key={store.id} store={store} />;

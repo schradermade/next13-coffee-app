@@ -32,6 +32,11 @@ const Banner: React.FC<BannerProps> = ({}) => {
           </Button>
         </div>
       </div>
+
+      <h2 className={styles.heading1}>
+        <p>{latLong && `Your location: ${latLong}`}</p>
+      </h2>
+
       <p>{locationErrorMsg && `Something went wrong: ${locationErrorMsg}`}</p>
       <h2 className={styles.heading2}>
         Places in the area for{" "}

@@ -28,6 +28,12 @@
   .upvoteButton:hover {
     background-color: var(--text-purple);
   }
+
+  .upvoteButton:disabled {
+    /* color: #666; */
+    background: #666;
+    cursor: auto;
+  }
   
   .layout {
     height: 100%;
