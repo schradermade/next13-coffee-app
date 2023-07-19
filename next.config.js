@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    NEXT_PUBLIC_DB_URL: process.env.NEXT_PUBLIC_DB_URL,
+    DB_URL: process.env.DB_URL,
     FOURSQUARE_API_KEY: process.env.FOURSQUARE_API_KEY,
   },
   experimental: {

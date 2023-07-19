@@ -7,7 +7,8 @@ const getUrlForCoffeeStores = (
 };
 
 export default async function fetchAllStores() {
-  const options = {
+  console.log("AUTHSTRING!:", JSON.stringify(process.env.FOURSQUARE_API_KEY));
+  const options: RequestInit = {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -21,7 +22,6 @@ export default async function fetchAllStores() {
   );
 
   if (!res.ok) {
-    console.log("RES-ERROR:", res.status, res);
     throw new Error("FETCHALLSTORES: Soemthing went wrong getting the data!");
   }
   const data = await res.json();
