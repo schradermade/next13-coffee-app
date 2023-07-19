@@ -7,7 +7,6 @@ const getUrlForCoffeeStores = (
 };
 
 export default async function fetchAllStores() {
-  console.log("AUTHSTRING!:", JSON.stringify(process.env.FOURSQUARE_API_KEY));
   const options: RequestInit = {
     method: "GET",
     headers: {
